@@ -29,3 +29,11 @@ class Wall:
 
 
 
+class Invible_wall:
+
+    def __init__(self,img):
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
