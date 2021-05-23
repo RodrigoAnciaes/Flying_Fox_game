@@ -3,5 +3,5 @@
 
 # Desenvolvido em conjunto por:
 - Rodrigo Anciães Patelli
-- Guido
+- Guido Rosa
 - Enzo Cunha
