@@ -9,7 +9,7 @@ pygame.init()
 WIDTH = 880
 HEIGHT = 400
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Navinha')
+pygame.display.set_caption('Flying_Fox')
 
 # ----- Inicia assets
 METEOR_WIDTH = 50
