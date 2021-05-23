@@ -2,7 +2,7 @@ import pygame
 import random
 from os import path
 
-from config import IMG_DIR, BLACK, FPS, GAME, QUIT
+from config import IMG_DIR, BLACK, FPS, GAME, QUIT, WIDTH, HEIGHT
 
 
 def ending_screen(screen):
@@ -10,8 +10,8 @@ def ending_screen(screen):
     clock = pygame.time.Clock()
 
     # Carrega o fundo da tela inicial
-    background = pygame.image.load(path.join(IMG_DIR, 'el_caribromas.jpeg')).convert()
-    background = pygame.transform.scale(background, (125, 166))
+    background = pygame.image.load(path.join(IMG_DIR, 'snow_day.jpeg')).convert()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
     running = True
