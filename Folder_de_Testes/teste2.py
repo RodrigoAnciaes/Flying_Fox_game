@@ -13,13 +13,13 @@ pygame.display.set_caption('Flying_Fox')
 
 # ----- Inicia assets
 METEOR_WIDTH = 50
-METEOR_HEIGHT = 38
+METEOR_HEIGHT = 50
 SHIP_WIDTH = 80
 SHIP_HEIGHT = 68
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-meteor_img = pygame.image.load('Folder_de_Testes/assets/img/tronco1.png').convert_alpha()
+meteor_img = pygame.image.load('Folder_de_Testes/assets/img/Snowflake.png').convert_alpha()
 meteor_img = pygame.transform.scale(meteor_img, (METEOR_WIDTH, METEOR_HEIGHT))
 ship_img = pygame.image.load('Folder_de_Testes/assets/img/Fox.jpeg').convert_alpha()
 ship_img = pygame.transform.scale(ship_img, (SHIP_WIDTH, SHIP_HEIGHT))
@@ -46,8 +46,10 @@ class Ship(pygame.sprite.Sprite):
         # Mantem dentro da tela
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
+            #game = False
         if self.rect.top < 0:
             self.rect.top = 0
+            #game = False
 
 class Meteor(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -91,6 +93,7 @@ for i in range(8):
 # ===== Loop principal =====
 while game:
     clock.tick(FPS)
+    
 
     # ----- Trata eventos
     for event in pygame.event.get():
