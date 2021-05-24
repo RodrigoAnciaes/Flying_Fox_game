@@ -36,7 +36,7 @@ class Ship(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT - 200
         
-        self.speedy = 4 * (self.rect.y * 0.01)
+        self.speedy = 4 * (self.rect.y * 0.01) 
 
     def update(self):
         # Atualização da posição da nave
