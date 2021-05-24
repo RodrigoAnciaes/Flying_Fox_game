@@ -55,12 +55,14 @@ class Meteor(pygame.sprite.Sprite):
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-
+        METEOR_HEIGHT = random.randint(50, 250)
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
         self.rect.y = random.randint(10,300)
         self.speedx = random.randint(-5, -3)
+        METEOR_HEIGHT = random.randint(50, 250)
+        
         
 
     def update(self):
@@ -82,6 +84,7 @@ FPS = 30
 
 # Criando um grupo de meteoros
 all_sprites = pygame.sprite.Group()
+all_meteors = pygame.sprite.Group()
 # Criando o jogador
 player = Ship(ship_img)
 all_sprites.add(player)
@@ -89,6 +92,7 @@ all_sprites.add(player)
 for i in range(2):
     meteor = Meteor(meteor_img)
     all_sprites.add(meteor)
+    all_meteors.add(meteor)
 
 # ===== Loop principal =====
 while game:
@@ -116,7 +120,10 @@ while game:
     # ----- Atualiza estado do jogo
     # Atualizando a posição dos meteoros
     all_sprites.update()
-
+    
+    hits = pygame.sprite.spritecollide(player,all_meteors,True)
+    if len(hits) > 0:
+        game = False
     # ----- Gera saídas
     window.fill((0, 0, 0))  # Preenche com a cor branca
     window.blit(background, (0, 0))
