@@ -55,8 +55,8 @@ class Meteor(pygame.sprite.Sprite):
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
+        
+        self.image = pygame.transform.scale(meteor_img, (METEOR_WIDTH, METEOR_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
         self.rect.y = random.randint(10,300)
