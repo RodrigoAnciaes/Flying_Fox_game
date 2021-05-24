@@ -59,7 +59,7 @@ class Meteor(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
-        self.rect.y = random.randint(METEOR_HEIGHT,300)
+        self.rect.y = random.randint(10,300)
         self.speedx = random.randint(-5, -3)
         
 
@@ -71,7 +71,7 @@ class Meteor(pygame.sprite.Sprite):
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = (WIDTH-METEOR_WIDTH)
-            self.rect.y = random.randint(METEOR_HEIGHT,300)
+            self.rect.y = random.randint(10,300)
             self.speedx = random.randint(-5, -3)
             
 
