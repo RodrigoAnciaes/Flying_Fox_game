@@ -21,7 +21,7 @@ background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').conv
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 meteor_img = pygame.image.load('Folder_de_Testes/assets/img/Tronco1.png').convert_alpha()
 meteor_img = pygame.transform.scale(meteor_img, (METEOR_WIDTH, METEOR_HEIGHT))
-ship_img = pygame.image.load('Folder_de_Testes/assets/img/Fox.jpeg').convert_alpha()
+ship_img = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
 ship_img = pygame.transform.scale(ship_img, (SHIP_WIDTH, SHIP_HEIGHT))
 
 # ----- Inicia estruturas de dados
