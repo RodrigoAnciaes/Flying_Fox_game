@@ -61,7 +61,7 @@ fox_group.add(fox)
 
 
 
-class Wall(pygame.sprite.Sprite):
+class Wall_meteor_fisic(pygame.sprite.Sprite):
     
     
     def __init__(self, img):
@@ -100,3 +100,18 @@ class Invible_wall:
 
         self.image = img
         self.rect = self.image.get_rect()
+
+
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, inversal, WIDTH, HEIGHT):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.image.load('Folder_de_Testes/assets/img/Tree.png').convert_alpha()
+        
+
+        if inversal:
+
+            self.image = pygame.transaform.flip(self.image,False, True)
+        self.rect = self.image.get_rect()
+        self.rectx = WIDTH
