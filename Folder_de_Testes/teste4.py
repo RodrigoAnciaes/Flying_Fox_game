@@ -11,9 +11,10 @@ HEIGHT = 800
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flying_Fox')
 gravity = 1
+difficult = 0
 # ----- Inicia assets
 METEOR_WIDTH = 100
-METEOR_HEIGHT = random.randint(200, 350)
+METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
@@ -62,11 +63,11 @@ class Fox(pygame.sprite.Sprite):
                 
         # Mantem dentro da tela
         if self.rect.bottom > HEIGHT:
-            pygame.QUIT()
+            pygame.QUIT
             self.rect.bottom = HEIGHT
             #game = False
         if self.rect.top < 0:
-           pygame.QUIT()
+           pygame.QUIT
            self.rect.top = 0
             
 
@@ -103,7 +104,7 @@ class Meteor(pygame.sprite.Sprite):
 game = True
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
-FPS = 30
+FPS = 15 
 
 # Criando um grupo de meteoros
 all_sprites = pygame.sprite.Group()
@@ -119,8 +120,11 @@ for i in range(2):
 
 # ===== Loop principal =====
 while game:
-    clock.tick(FPS)
-    print(clock)
+    fpdif = FPS + difficult
+    print(fpdif)
+    clock.tick(fpdif)
+    #print(clock)
+    difficult += 0.01
 
     # ----- Trata eventos
     for event in pygame.event.get():
