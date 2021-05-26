@@ -4,7 +4,7 @@ import pygame
 import random
 
 pygame.init()
-
+assets = []
 # ----- Gera tela principal
 WIDTH = 880
 HEIGHT = 800
@@ -21,7 +21,7 @@ background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 meteor_img = pygame.image.load('Folder_de_Testes/assets/img/Tree.png').convert_alpha()
 meteor_img = pygame.transform.scale(meteor_img, (METEOR_WIDTH, METEOR_HEIGHT))
 
-
+score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
 
 # ----- Inicia estruturas de dados
 # Definindo os novos tipos
@@ -129,7 +129,7 @@ while game:
     #print(clock)
     difficult += 0.01
 
-    SCORE = int(difficult/10)
+    score = int(difficult)
 
     # ----- Trata eventos
     for event in pygame.event.get():
@@ -158,6 +158,11 @@ while game:
     window.blit(background, (0, 0))
     # Desenhando meteoros
     all_sprites.draw(window)
+
+    text_surface = score_font.render("{:08d}".format(score), True, (255, 255, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (WIDTH / 2,  10)
+    window.blit(text_surface, text_rect)
 
     pygame.display.update()  # Mostra o novo frame para o jogador
 
