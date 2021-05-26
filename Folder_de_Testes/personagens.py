@@ -138,11 +138,11 @@ class Coin(pygame.sprite.Sprite):
         # Atualizando a posição do meteoro
         METEOR_HEIGHT = random.randint(50, 250)
         self.rect.x += self.speedx
-        
+        coin_WIDTH = 50
         # Se o meteoro passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
-            self.rect.x = (WIDTH-METEOR_WIDTH)
+            self.rect.x = (WIDTH-coin_WIDTH)
             self.rect.y = (HEIGHT - METEOR_HEIGHT)
             self.speedx = random.randint(-5, -3)
             
