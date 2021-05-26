@@ -6,6 +6,7 @@ import random
 
 WIDTH = 880
 HEIGHT = 400
+gravity = 1
 
 
 class Fox(pygame.sprite.Sprite):
@@ -13,43 +14,62 @@ class Fox(pygame.sprite.Sprite):
     def __init__(self):
         
         pygame.sprite.Sprite.__init__(self)
-        Fox_WIDTH = 70
-        Fox_HEIGHT = 70
-
-        
-        Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
+        count_fox = 0
+        Fox_WIDTH = 170
+        Fox_HEIGHT = 100
+        Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposa 1.png').convert_alpha()
         Fox1 = pygame.transform.scale(Fox1, (Fox_WIDTH, Fox_HEIGHT))
-        Fox2 = pygame.image.load('Folder_de_Testes/assets/img/snowflake.png').convert_alpha()
+        Fox2 = pygame.image.load('Folder_de_Testes/assets/img/raposa2.png').convert_alpha()
         Fox2 = pygame.transform.scale(Fox2, (Fox_WIDTH, Fox_HEIGHT))
-        Fox3 = pygame.image.load('Folder_de_Testes/assets/img/Fox.jpeg').convert_alpha()
+        Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
 
         self.images = [Fox1,Fox2,Fox3]
 
-        
+        self.count_fox = count_fox
         self.image = Fox1
         
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
-        self.rect.bottom = HEIGHT - 200
-        self.speedy = 4 
+        self.rect.bottom = HEIGHT - 100
+        self.speedy = 1
         
         self.now_on_windon = 0
     def update(self):
         
         self.rect.y += self.speedy 
 
-        self.now_on_windon = (self.now_on_windon + 1) % 3
-        self.image = self.images[self.now_on_windon]
+        self.speedy += gravity + 0.1 * (-self.speedy)
 
-                # Atualização da posição da nave
+        
+        self.mask = pygame.mask.from_surface(self.image)
+
+        self.count_fox += 1
+
+
+
+        
+        if self.count_fox == 10:
+
+            self.now_on_windon = (self.now_on_windon + 1) % 3
+            self.image = self.images[self.now_on_windon]
+            self.count_fox = 0
+
+
+                
         # Mantem dentro da tela
         if self.rect.bottom > HEIGHT:
+            pygame.QUIT
             self.rect.bottom = HEIGHT
             #game = False
         if self.rect.top < 0:
+           pygame.QUIT
            self.rect.top = 0
-            #game = False
+            
+
+    def pulo(self):
+        
+        self.speedy += -18
 
 fox_group = pygame.sprite.Group()
 fox = Fox()
