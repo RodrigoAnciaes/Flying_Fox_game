@@ -7,7 +7,7 @@ pygame.init()
 assets = []
 # ----- Gera tela principal
 WIDTH = 880
-HEIGHT = 800
+HEIGHT = 660
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flying_Fox')
 gravity = 1
