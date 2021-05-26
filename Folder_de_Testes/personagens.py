@@ -1,5 +1,6 @@
 from Folder_de_Testes.base import Fox_HEIGHT, Fox_WIDTH
 import pygame
+import random
 
 #Parametros gerais
 
@@ -60,14 +61,34 @@ fox_group.add(fox)
 
 
 
-class Wall:
-
-    def __init__(self,img,colision_sound):
-
+class Wall(pygame.sprite.Sprite):
+    
+    
+    def __init__(self, img):
+        # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
+        Wall_WIDTH = 50 
+        Wall_HEIGHT = random.randint(50, 250)
         self.image = img
         self.rect = self.image.get_rect()
+        self.rect.x = (WIDTH-Wall_WIDTH)
+        self.rect.y = random.randint(10,300)
+        self.speedx = random.randint(-5, -3)
+        Wall_HEIGHT = random.randint(50, 250)
+        
+        
+
+    def update(self):
+        # Atualizando a posição do meteoro
+        self.rect.x += self.speedx
+        
+        # Se o meteoro passar do final da tela, volta para cima e sorteia
+        # novas posições e velocidades
+        if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
+            self.rect.x = (WIDTH-Wall_WIDTH)
+            self.rect.y = random.randint(10,300)
+            self.speedx = random.randint(-5, -3)
 
 
 
