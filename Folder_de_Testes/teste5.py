@@ -102,6 +102,35 @@ class Meteor(pygame.sprite.Sprite):
             self.rect.x = (WIDTH-METEOR_WIDTH)
             self.rect.y = (HEIGHT - METEOR_HEIGHT)
             self.speedx = random.randint(-5, -3)
+
+
+class Coin(pygame.sprite.Sprite):
+    def __init__(self):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        coin_HEIGHT = 50
+        coin_WIDTH = 50
+        self.image = pygame.image.load('Folder_de_Testes/assets/img/coin.png').convert_alpha()
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = (WIDTH-coin_WIDTH)
+        self.rect.y = (HEIGHT  - coin_HEIGHT)
+        self.speedx = random.randint(-5, -3)
+        METEOR_HEIGHT = random.randint(50, 250)
+        
+        
+
+    def update(self):
+        # Atualizando a posição do meteoro
+        METEOR_HEIGHT = random.randint(50, 250)
+        self.rect.x += self.speedx
+        coin_WIDTH = 50
+        # Se o meteoro passar do final da tela, volta para cima e sorteia
+        # novas posições e velocidades
+        if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
+            self.rect.x = (WIDTH-coin_WIDTH)
+            self.rect.y = (HEIGHT - METEOR_HEIGHT)
+            self.speedx = random.randint(-5, -3)
             
 
 game = True
