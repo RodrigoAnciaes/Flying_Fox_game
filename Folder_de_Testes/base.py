@@ -7,7 +7,7 @@ pygame.init()
 
 # ----- Gera tela principal
 WIDTH = 880
-HEIGHT = 400
+HEIGHT = 800
 Fox_WIDTH = 70
 Fox_HEIGHT = 70
 
@@ -53,7 +53,7 @@ class Fox(pygame.sprite.Sprite):
         
         self.rect.y += self.speedy 
 
-        self.speedy += gravity + 0.2 * (-self.speedy)
+        self.speedy += gravity + 0.1 * (-self.speedy)
 
         self.now_on_windon = (self.now_on_windon + 1) % 3
         self.image = self.images[self.now_on_windon]
@@ -61,11 +61,13 @@ class Fox(pygame.sprite.Sprite):
                 
         # Mantem dentro da tela
         if self.rect.bottom > HEIGHT:
+            #pygame.QUIT()
             self.rect.bottom = HEIGHT
             #game = False
         if self.rect.top < 0:
+           #pygame.QUIT()
            self.rect.top = 0
-            #game = False
+            
 
     def pulo(self):
         
