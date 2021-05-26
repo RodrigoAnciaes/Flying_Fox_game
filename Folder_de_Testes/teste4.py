@@ -12,12 +12,12 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flying_Fox')
 gravity = 1
 # ----- Inicia assets
-METEOR_WIDTH = 50
+METEOR_WIDTH = 100
 METEOR_HEIGHT = random.randint(200, 350)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-meteor_img = pygame.image.load('Folder_de_Testes/assets/img/Tronco1.png').convert_alpha()
+meteor_img = pygame.image.load('Folder_de_Testes/assets/img/Tree.png').convert_alpha()
 meteor_img = pygame.transform.scale(meteor_img, (METEOR_WIDTH, METEOR_HEIGHT))
 
 
