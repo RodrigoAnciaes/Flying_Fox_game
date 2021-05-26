@@ -12,6 +12,8 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flying_Fox')
 gravity = 1
 difficult = 0
+
+count_fox = 0
 # ----- Inicia assets
 METEOR_WIDTH = 100
 METEOR_HEIGHT = random.randint(300, 450)
@@ -30,24 +32,24 @@ class Fox(pygame.sprite.Sprite):
     def __init__(self):
         
         pygame.sprite.Sprite.__init__(self)
-        
-        Fox_WIDTH = 70
-        Fox_HEIGHT = 70
-        Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
+        count_fox = 0
+        Fox_WIDTH = 170
+        Fox_HEIGHT = 100
+        Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposa 1.png').convert_alpha()
         Fox1 = pygame.transform.scale(Fox1, (Fox_WIDTH, Fox_HEIGHT))
-        Fox2 = pygame.image.load('Folder_de_Testes/assets/img/snowflake.png').convert_alpha()
+        Fox2 = pygame.image.load('Folder_de_Testes/assets/img/raposa2.png').convert_alpha()
         Fox2 = pygame.transform.scale(Fox2, (Fox_WIDTH, Fox_HEIGHT))
-        Fox3 = pygame.image.load('Folder_de_Testes/assets/img/Fox.jpeg').convert_alpha()
+        Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
 
         self.images = [Fox1,Fox2,Fox3]
 
-        
+        self.count_fox = count_fox
         self.image = Fox1
         
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
-        self.rect.bottom = HEIGHT - 200
+        self.rect.bottom = HEIGHT - 100
         self.speedy = 1
         
         self.now_on_windon = 0
@@ -57,9 +59,20 @@ class Fox(pygame.sprite.Sprite):
 
         self.speedy += gravity + 0.1 * (-self.speedy)
 
-        self.now_on_windon = (self.now_on_windon + 1) % 3
-        self.image = self.images[self.now_on_windon]
+        
         self.mask = pygame.mask.from_surface(self.image)
+
+        self.count_fox += 1
+
+
+
+        
+        if self.count_fox == 10:
+
+            self.now_on_windon = (self.now_on_windon + 1) % 3
+            self.image = self.images[self.now_on_windon]
+            self.count_fox = 0
+
 
                 
         # Mantem dentro da tela
@@ -75,6 +88,7 @@ class Fox(pygame.sprite.Sprite):
     def pulo(self):
         
         self.speedy += -18
+        
 
 class Meteor(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -85,7 +99,11 @@ class Meteor(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
+<<<<<<< HEAD
         self.rect.y = (450)
+=======
+        self.rect.y = (500)
+>>>>>>> 545359257227e167bd06cc06ae67d6ca3e8ff930
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
         
@@ -100,7 +118,11 @@ class Meteor(pygame.sprite.Sprite):
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = (WIDTH-METEOR_WIDTH)
+<<<<<<< HEAD
             self.rect.y = (450)
+=======
+            self.rect.y = (500)
+>>>>>>> 545359257227e167bd06cc06ae67d6ca3e8ff930
             self.speedx = random.randint(-5, -3)
 
 
