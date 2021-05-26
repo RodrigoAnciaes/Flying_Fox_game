@@ -59,6 +59,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.now_on_windon = (self.now_on_windon + 1) % 3
         self.image = self.images[self.now_on_windon]
+        self.mask = pygame.mask.from_surface(self.image)
 
                 
         # Mantem dentro da tela
@@ -81,6 +82,7 @@ class Meteor(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         METEOR_HEIGHT = random.randint(50, 250)
         self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
         self.rect.y = random.randint(10,HEIGHT)
@@ -145,7 +147,7 @@ while game:
     # Atualizando a posição dos meteoros
     all_sprites.update()
     
-    hits = pygame.sprite.spritecollide(player,all_meteors,True)
+    hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
         game = False
     # ----- Gera saídas
