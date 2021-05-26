@@ -85,7 +85,7 @@ class Meteor(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
-        self.rect.y = (HEIGHT  - METEOR_HEIGHT)
+        self.rect.y = (450)
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
         
@@ -100,7 +100,7 @@ class Meteor(pygame.sprite.Sprite):
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = (WIDTH-METEOR_WIDTH)
-            self.rect.y = (HEIGHT - METEOR_HEIGHT)
+            self.rect.y = (450)
             self.speedx = random.randint(-5, -3)
 
 
