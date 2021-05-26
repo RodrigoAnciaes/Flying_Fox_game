@@ -111,10 +111,11 @@ class Coin(pygame.sprite.Sprite):
         coin_HEIGHT = 50
         coin_WIDTH = 50
         self.image = pygame.image.load('Folder_de_Testes/assets/img/coin.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (coin_WIDTH, coin_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-coin_WIDTH)
-        self.rect.y = (HEIGHT  - coin_HEIGHT)
+        self.rect.y = random.randint(10, 300)
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
         
@@ -141,6 +142,7 @@ FPS = 30
 # Criando um grupo de meteoros
 all_sprites = pygame.sprite.Group()
 all_meteors = pygame.sprite.Group()
+all_coins =   pygame.sprite.Group()
 # Criando o jogador
 player = Fox()
 all_sprites.add(player)
@@ -149,6 +151,10 @@ for i in range(1):
     meteor = Meteor(meteor_img)
     all_sprites.add(meteor)
     all_meteors.add(meteor)
+
+coin = Coin()
+all_coins.add(coin)
+all_sprites.add(coin)
 
 # ===== Loop principal =====
 while game:
@@ -180,8 +186,11 @@ while game:
     all_sprites.update()
     
     hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
-    if len(hits) > 0:
-        game = False
+    
+    print(hits)
+
+    #if len(hits) > 0:
+        #game = False
     # ----- Gera saídas
     window.fill((0, 0, 0))  # Preenche com a cor branca
     window.blit(background, (0, 0))
