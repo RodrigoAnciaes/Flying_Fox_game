@@ -23,6 +23,8 @@ class Fox(pygame.sprite.Sprite):
         Fox2 = pygame.transform.scale(Fox2, (Fox_WIDTH, Fox_HEIGHT))
         Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
+        self.flying_one = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
+        self.flying_one = pygame.transform.scale(self.flying_one, (Fox_WIDTH, Fox_HEIGHT))
 
         self.images = [Fox1,Fox2,Fox3]
 
@@ -35,6 +37,9 @@ class Fox(pygame.sprite.Sprite):
         self.speedy = 1
         
         self.now_on_windon = 0
+
+        self.speed_modifier = 0.0
+
     def update(self):
         
         self.rect.y += self.speedy 
@@ -46,30 +51,41 @@ class Fox(pygame.sprite.Sprite):
 
         self.count_fox += 1
 
+        print(self.speed_modifier)
+
+        if self.speed_modifier > -30:
+            self.speed_modifier -= 0.003
+
 
 
         
-        if self.count_fox == 10:
+        if self.count_fox >= 10 and  self.rect.bottom > HEIGHT:
 
             self.now_on_windon = (self.now_on_windon + 1) % 3
             self.image = self.images[self.now_on_windon]
             self.count_fox = 0
 
+        elif self.speedy <0 :
+            self.image = self.flying_one
+            #print(self.speedy)
+            #print(self.count_fox)
+
 
                 
         # Mantem dentro da tela
         if self.rect.bottom > HEIGHT:
-            pygame.QUIT
+        
             self.rect.bottom = HEIGHT
+            #self.speedy = 1
             #game = False
         if self.rect.top < 0:
-           pygame.QUIT
+           
            self.rect.top = 0
             
 
     def pulo(self):
-        
-        self.speedy += -18
+
+        self.speedy = -16 + self.speed_modifier
 
 fox_group = pygame.sprite.Group()
 fox = Fox()
