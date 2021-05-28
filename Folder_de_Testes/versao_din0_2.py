@@ -171,7 +171,7 @@ class Meteor(pygame.sprite.Sprite):  #-----------------------Árvore------------
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-METEOR_WIDTH)
-        self.rect.y = (500)
+        self.rect.y = (380)
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
         
