@@ -351,7 +351,7 @@ while game:
                 # Ganhou pontos!
         score_kills += 50
 
-    print(hits_pred)
+    
     
     hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
