@@ -109,7 +109,7 @@ class Fox(pygame.sprite.Sprite):
         
         
 
-class Meteor(pygame.sprite.Sprite):
+class Meteor(pygame.sprite.Sprite):  #-----------------------Árvore----------------------------
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -163,7 +163,7 @@ class Coin(pygame.sprite.Sprite):
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = (WIDTH-coin_WIDTH)
-            self.rect.y = (HEIGHT - METEOR_HEIGHT)
+            self.rect.y = self.rect.y = random.randint(10, 600)
             self.speedx = random.randint(-5, -3)
 
 
@@ -179,7 +179,7 @@ class Predator(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-coin_WIDTH)
-        self.rect.y = random.randint(10, 300)
+        self.rect.y = random.randint(10, 600)
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
         
@@ -194,7 +194,7 @@ class Predator(pygame.sprite.Sprite):
         # novas posições e velocidades
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
             self.rect.x = (WIDTH-coin_WIDTH)
-            self.rect.y = (HEIGHT - METEOR_HEIGHT)
+            self.rect.y = random.randint(10, 600)
             self.speedx = random.randint(-5, -3)
             
 score = 0
