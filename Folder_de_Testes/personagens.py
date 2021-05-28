@@ -17,6 +17,7 @@ class Fox(pygame.sprite.Sprite):
         count_fox = 0
         Fox_WIDTH = 170
         Fox_HEIGHT = 100
+        self.gravity = 1
         Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposa 1.png').convert_alpha()
         Fox1 = pygame.transform.scale(Fox1, (Fox_WIDTH, Fox_HEIGHT))
         Fox2 = pygame.image.load('Folder_de_Testes/assets/img/raposa2.png').convert_alpha()
@@ -24,11 +25,11 @@ class Fox(pygame.sprite.Sprite):
         Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
         self.flying_one = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
-        self.flying_one = pygame.transform.scale(self.flying_one, (Fox_WIDTH, Fox_HEIGHT))
+        self.flying_one = pygame.transform.scale(self.flying_one, (100, 100))
 
         self.images = [Fox1,Fox2,Fox3]
 
-        self.count_fox = count_fox
+        self.count_fox = count_fox 
         self.image = Fox1
         
         self.rect = self.image.get_rect()
@@ -44,17 +45,17 @@ class Fox(pygame.sprite.Sprite):
         
         self.rect.y += self.speedy 
 
-        self.speedy += gravity + 0.1 * (-self.speedy)
+        self.speedy += self.gravity + 0.1 * (-self.speedy)
 
         
         self.mask = pygame.mask.from_surface(self.image)
 
         self.count_fox += 1
 
-        print(self.speed_modifier)
+        #print(self.speed_modifier)
 
-        if self.speed_modifier > -30:
-            self.speed_modifier -= 0.003
+        if self.speed_modifier > -12:
+            self.speed_modifier -= 0.0024
 
 
 
@@ -182,3 +183,32 @@ class Coin(pygame.sprite.Sprite):
             self.rect.y = (HEIGHT - METEOR_HEIGHT)
             self.speedx = random.randint(-5, -3)
             
+
+class Predator(pygame.sprite.Sprite):
+    def __init__(self):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        coin_HEIGHT = 50
+        coin_WIDTH = 50
+        self.image = pygame.image.load('Folder_de_Testes/assets/img/piranha.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (coin_WIDTH, coin_HEIGHT))
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = (WIDTH-coin_WIDTH)
+        self.rect.y = random.randint(10, 300)
+        self.speedx = random.randint(-5, -3)
+        METEOR_HEIGHT = random.randint(50, 250)
+        
+        
+
+    def update(self):
+        # Atualizando a posição do meteoro
+        METEOR_HEIGHT = random.randint(50, 250)
+        self.rect.x += self.speedx
+        coin_WIDTH = 50
+        # Se o meteoro passar do final da tela, volta para cima e sorteia
+        # novas posições e velocidades
+        if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
+            self.rect.x = (WIDTH-coin_WIDTH)
+            self.rect.y = (HEIGHT - METEOR_HEIGHT)
+            self.speedx = random.randint(-5, -3)
