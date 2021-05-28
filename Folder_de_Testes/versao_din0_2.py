@@ -251,6 +251,7 @@ class Predator(pygame.sprite.Sprite):
             
 score = 0
 score_coin = 0
+score_kills = 0
 game = True
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
@@ -311,7 +312,7 @@ while game:
 
     #print(int(fpdif))
 
-    score = int(difficult) + score_coin
+    score = int(difficult) + score_coin + score_kills
 
     # ----- Trata eventos
     for event in pygame.event.get():
@@ -335,7 +336,7 @@ while game:
 
 
 
-    hits = pygame.sprite.groupcollide(all_predators, all_scratchs, True, True, pygame.sprite.collide_mask)
+    hits = pygame.sprite.groupcollide(all_predators, all_scratchs, True, False, pygame.sprite.collide_mask)
     for meteor in hits: # As chaves são os elementos do primeiro grupo (meteoros) que colidiram com alguma bala
                 # O meteoro e destruido e precisa ser recriado
             
@@ -346,7 +347,7 @@ while game:
                 # No lugar do meteoro antigo, adicionar uma explosão.
             
                 # Ganhou pontos!
-        score += 100
+        score_kills += 50
     
     hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
