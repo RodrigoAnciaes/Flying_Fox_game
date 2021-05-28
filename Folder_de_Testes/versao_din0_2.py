@@ -43,7 +43,7 @@ class Fox(pygame.sprite.Sprite):
         Fox2 = pygame.transform.scale(Fox2, (Fox_WIDTH, Fox_HEIGHT))
         Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
-        self.flying_one = pygame.image.load('Folder_de_Testes/assets/img/raposafinal.png').convert_alpha()
+        self.flying_one = pygame.image.load('Folder_de_Testes/assets/img/fly_fox.png').convert_alpha()
         self.flying_one = pygame.transform.scale(self.flying_one, (100, 100))
 
         self.images = [Fox1,Fox2,Fox3]
@@ -123,7 +123,7 @@ class Fox(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.last_shot = now
             # A nova bala vai ser criada logo acima e no centro horizontal da nave
-            new_scratch = Claw(self.rect.top + 90, self.rect.centerx + 40)
+            new_scratch = Claw(self.rect.top + 130, self.rect.centerx + 40)
             all_sprites.add(new_scratch)
             all_scratchs.add(new_scratch) 
 
@@ -134,7 +134,7 @@ class Claw(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         claw_WIDTH = 100
-        claw_HEIGHT = 100
+        claw_HEIGHT = 200
         self.image = pygame.image.load('Folder_de_Testes/assets/img/scratch.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (claw_WIDTH, claw_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
