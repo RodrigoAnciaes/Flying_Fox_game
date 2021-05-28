@@ -133,7 +133,7 @@ class Claw(pygame.sprite.Sprite):
     def __init__(self,bottom, centerx):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-        claw_WIDTH = 100
+        claw_WIDTH = 150
         claw_HEIGHT = 200
         self.image = pygame.image.load('Folder_de_Testes/assets/img/scratch.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (claw_WIDTH, claw_HEIGHT))
