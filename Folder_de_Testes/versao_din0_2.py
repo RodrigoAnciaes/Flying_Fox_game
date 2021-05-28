@@ -332,6 +332,21 @@ while game:
     # ----- Atualiza estado do jogo
     # Atualizando a posição dos meteoros
     all_sprites.update()
+
+
+
+    hits = pygame.sprite.groupcollide(all_predators, all_scratchs, True, True, pygame.sprite.collide_mask)
+    for meteor in hits: # As chaves são os elementos do primeiro grupo (meteoros) que colidiram com alguma bala
+                # O meteoro e destruido e precisa ser recriado
+            
+        p = Predator()
+        all_sprites.add(p)
+        all_meteors.add(p)
+
+                # No lugar do meteoro antigo, adicionar uma explosão.
+            
+                # Ganhou pontos!
+        score += 100
     
     hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
