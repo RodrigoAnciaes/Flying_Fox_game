@@ -123,7 +123,7 @@ class Fox(pygame.sprite.Sprite):
             # Marca o tick da nova imagem.
             self.last_shot = now
             # A nova bala vai ser criada logo acima e no centro horizontal da nave
-            new_scratch = Claw(self.rect.top, self.rect.centerx)
+            new_scratch = Claw(self.rect.top + 90, self.rect.centerx + 40)
             all_sprites.add(new_scratch)
             all_scratchs.add(new_scratch) 
 
