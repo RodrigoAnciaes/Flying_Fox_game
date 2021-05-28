@@ -50,7 +50,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.count_fox = count_fox 
         self.image = Fox1
-        
+        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/voo_zuado.wav') #descobri que arquivos de sound efects tem que ser .wav
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT - 100
@@ -98,9 +98,9 @@ class Fox(pygame.sprite.Sprite):
 
                 
         # Mantem dentro da tela
-        if self.rect.bottom > HEIGHT:
+        if self.rect.bottom > HEIGHT + 18:
         
-            self.rect.bottom = HEIGHT
+            self.rect.bottom = HEIGHT + 18
             #self.speedy = 1
             #game = False
         if self.rect.top < 0:
@@ -111,6 +111,7 @@ class Fox(pygame.sprite.Sprite):
     def pulo(self):
 
         self.speedy = -16 + self.speed_modifier
+        self.fly_sound.play()
 
     def Scratch(self):
         # Verifica se pode atirar
