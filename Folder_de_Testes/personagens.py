@@ -9,6 +9,14 @@ HEIGHT = 400
 gravity = 1
 
 
+
+def randon_sizes_for_walls(xpos):
+    protection = 200
+    altura = random.randint(200, 400)
+    wall = Wall(False, xpos, altura)
+    inversal_wall = Wall(True, xpos,HEIGHT - altura - protection)
+    return (wall,  inversal_wall)
+
 class Fox(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -140,18 +148,31 @@ class Invible_wall:
 
 
 class Wall(pygame.sprite.Sprite):
-    def __init__(self, inversal, WIDTH, HEIGHT):
+    def __init__(self, inversal,posx, posy):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
+        wall_HEIGHT = 80
+        wall_WIDTH = 80
+
         self.image = pygame.image.load('Folder_de_Testes/assets/img/Tree.png').convert_alpha()
-        
+        self.image = pygame.transform.scale(self.image, (wall_WIDTH, wall_HEIGHT))
+        self.rect = self.image.get_rect()
+        self.rect[0] = posx
 
         if inversal:
 
             self.image = pygame.transaform.flip(self.image,False, True)
-        self.rect = self.image.get_rect()
-        self.rectx = WIDTH
+            self.rect[1] = (self.rect[3] - posy)
+        else:
+            self.rect[1] = HEIGHT - posy
+
+        self.mask = pygame.mask.from_surface(self.image)
+
+        self.speedx = random.randint(-5, -3)
+
+    def update(self):
+        self.rect[0] += self.speedx
 
 
 
