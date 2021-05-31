@@ -26,7 +26,7 @@ score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28
 
 def randon_sizes_for_walls(xpos):
     protection = 200
-    altura = random.randint(200, 800)
+    altura = random.randint(200,660)
     wall = Meteor(False, xpos, altura)
     inversal_wall = Meteor(True, xpos, HEIGHT - altura - protection)
     return (wall,  inversal_wall)
@@ -176,13 +176,13 @@ class Meteor(pygame.sprite.Sprite):
         self.gravity = 1
         ABS1 = pygame.image.load('Folder_de_Testes/assets/img/arbusto.png').convert_alpha()
         ABS2 = pygame.image.load('Folder_de_Testes/assets/img/arbusto double 2.png').convert_alpha()
-        ABS3 = pygame.image.load('Folder_de_Testes/assets/img/arbusto doublr jump.png').convert_alpha()
+        ABS3 = pygame.image.load('Folder_de_Testes/assets/img/Sem Título.png').convert_alpha()
         self.images = [ABS1,ABS2,ABS3]
         self.image = ABS1
 
         
         self.rect = self.image.get_rect()
-        self.rect[0] = self.posx
+        self.rect[0] = posx
         self.inversal = inversal
         if inversal:
 
@@ -201,7 +201,6 @@ class Meteor(pygame.sprite.Sprite):
         
         
         if self.rect.top > HEIGHT or self.rect.right < 0 or self.rect.left > WIDTH:
-            self.rect[0] = self.posx
             self.count_arbusto+=1
             if self.count_arbusto >2:
                 self.count_arbusto = 0
@@ -210,9 +209,9 @@ class Meteor(pygame.sprite.Sprite):
             if self.inversal:
 
                 
-                self.rect[1] = (self.rect[3] - self.posy)
+                self.rect[1] = (self.rect[3] - self.rect[1])
             else:
-                self.rect[1] = HEIGHT - self.posy
+                self.rect[1] = HEIGHT - self.rect[1]
             
 
 
