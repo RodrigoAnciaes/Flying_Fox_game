@@ -11,4 +11,4 @@
 -Logo, basta colar "python3 -m pip install -U pygame --user" no terminal do seu dispositivo, clicar "enter" e o download é concluído.
 
 -Para finalmente rodar o jogo, é necessário que se clone o repositório desse github, abrindo em algum programa que rode a linguagem "phyton", como o Visual Studio Code.
-- Ao final, basta da um "play" no código "versaofinal.py" que você será direcionado para a tela do pygame.
+- Ao final, basta clicar no "play" do código "versaofinal.py" que você será direcionado para a tela do pygame.
