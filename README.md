@@ -1,6 +1,8 @@
 # Flying_Fox_game
 -Repositório criado para um projeto de design de software, onde devíamos projetar um jogo utilizando-se do pygame, culminando assim, na ideia do jogo Flying_Fox. Nosso jogo é baseado no clássico "Flappy Bird", onde o jogador precisa direcionar a raposa para que a mesma desvie dos obstáculos (no caso as árvores) e permaneça no ar o maior tempo possível. Para desviar das arvores que vem cada vez mais rápido em sua direção, o jogado utiliza a tecla "SPACE" para movimentar e fazer com que a "flying fox" se mantenha em um voo acrobático, fazendo um trajeto sem colisões. Com o tempo a velocidade aumenta e consequentemente a dificuldade, até que haja uma falha do jogador, fazendo com que a raposa colida com alguma árvore. Neste último cenário, a usuário é redirecionado a tela inicial e escolhe se quer jogar novamente.
 
+-Vale ressaltar que as imagens utilizadas foram criadas pelo programa "paint", sendo todas autênticas de nosso trabalho.
+
 # Desenvolvido em conjunto por:
 - Rodrigo Anciães Patelli
 - Guido Rosa
