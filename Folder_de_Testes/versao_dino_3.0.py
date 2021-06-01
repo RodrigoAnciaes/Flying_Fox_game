@@ -305,13 +305,8 @@ added = True
 # ===== Loop principal =====
 while game:
     
-
-    for i in range(2):
-        meteor = randon_sizes_for_walls(WIDTH * i + 800)
-        all_meteors.add(meteor[0])
-        all_meteors.add(meteor[1])
-        all_sprites.add(meteor[0])
-        all_sprites.add(meteor[1])
+    
+    
 
     fpdif = FPS + difficult
   
