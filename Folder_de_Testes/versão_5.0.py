@@ -19,7 +19,7 @@ METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-
+coin_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/super-mario-coin-sound.mp3')
 pygame.mixer.music.load('Folder_de_Testes/assets/sounds/otaldosom.mp3')
 pygame.mixer.music.set_volume(10000000.0)
 pygame.mixer.music.play(loops=-1)
@@ -409,6 +409,7 @@ while game:
     colect_coin = pygame.sprite.spritecollide(player,all_coins,True, pygame.sprite.collide_mask)
 
     for coin in colect_coin:
+        coin_sound.play()
         score_coin += 10
         c = Coin()
         all_coins.add(c)
