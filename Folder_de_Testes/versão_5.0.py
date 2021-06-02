@@ -25,9 +25,9 @@ score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28
 
 def randon_sizes_for_walls(xpos):
     protection = 100
-    print(xpos)
+    #print(xpos)
     altura = random.randint(0, 400)
-    print(altura)
+    #print(altura)
     wall = Meteor(False, xpos, altura)
     inversal_wall = Meteor(True, xpos,HEIGHT + altura - protection)
     return [wall,  inversal_wall]
@@ -312,7 +312,7 @@ while game:
     
 
     if fpdif > 40 and added == True:
-        print(added)
+        #print(added)
         
         predator = Predator()
         all_predators.add(predator)
