@@ -56,7 +56,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.count_fox = count_fox 
         self.image = Fox1
-        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/voo_zuado.wav') #descobri que arquivos de sound efects tem que ser .wav
+        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT - 100
@@ -68,6 +68,8 @@ class Fox(pygame.sprite.Sprite):
 
         self.last_shot = pygame.time.get_ticks()
         self.shoot_ticks = 500
+        self.last_jump_sound = pygame.time.get_ticks()
+        self.sound_ticks = 500
 
         
 
@@ -117,7 +119,14 @@ class Fox(pygame.sprite.Sprite):
     def pulo(self):
 
         self.speedy = -16 + self.speed_modifier
-        self.fly_sound.play()
+        now_sound = pygame.time.get_ticks()
+        # Verifica quantos ticks se passaram desde o último tiro.
+        elapsedsound_ticks = now_sound - self.last_shot
+
+        # Se já pode atirar novamente...
+        if elapsedsound_ticks > self.sound_ticks:
+            self.last_jump_sound = now_sound
+            self.fly_sound.play()
 
     def Scratch(self):
         # Verifica se pode atirar
@@ -177,7 +186,7 @@ class Meteor(pygame.sprite.Sprite):
         wall_WIDTH = 80
         self.posx = posx
         self.posy = posy
-        self.image = pygame.image.load('Folder_de_Testes/assets/img/Tree.png').convert_alpha()
+        self.image = pygame.image.load('Folder_de_Testes/assets/img/Tronco1.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (wall_WIDTH, wall_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect[0] = posx
