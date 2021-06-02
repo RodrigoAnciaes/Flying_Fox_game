@@ -68,10 +68,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.last_shot = pygame.time.get_ticks()
         self.shoot_ticks = 500
-        self.last_jump_sound = pygame.time.get_ticks()
-        self.sound_ticks = 500
 
-        
 
     def update(self):
         
@@ -119,14 +116,7 @@ class Fox(pygame.sprite.Sprite):
     def pulo(self):
 
         self.speedy = -16 + self.speed_modifier
-        now_sound = pygame.time.get_ticks()
-        # Verifica quantos ticks se passaram desde o último tiro.
-        elapsedsound_ticks = now_sound - self.last_shot
-
-        # Se já pode atirar novamente...
-        if elapsedsound_ticks > self.sound_ticks:
-            self.last_jump_sound = now_sound
-            self.fly_sound.play()
+        self.fly_sound.play()
 
     def Scratch(self):
         # Verifica se pode atirar
