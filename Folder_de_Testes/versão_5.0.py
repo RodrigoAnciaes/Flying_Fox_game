@@ -67,7 +67,7 @@ class Fox(pygame.sprite.Sprite):
         self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
-        self.rect.bottom = HEIGHT - 100
+        self.rect.bottom = HEIGHT
         self.speedy = 1
         
         self.now_on_windon = 0
