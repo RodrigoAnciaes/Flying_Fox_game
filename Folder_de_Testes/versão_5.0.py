@@ -23,7 +23,7 @@ pygame.mixer.music.set_volume(1.0)
 
 score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
 
-
+#----------------------------------------------------------------------------------------------------------------------------
 def randon_sizes_for_walls(xpos):
     protection = 100
     #print(xpos)
@@ -32,6 +32,9 @@ def randon_sizes_for_walls(xpos):
     wall = Meteor(False, xpos, altura)
     inversal_wall = Meteor(True, xpos,HEIGHT + altura - protection)
     return [wall,  inversal_wall]
+
+
+#----------------------------------------------------------------------------------------------------------------------------------
 
 # ----- Inicia estruturas de dados
 # Definindo os novos tipos
@@ -134,7 +137,7 @@ class Fox(pygame.sprite.Sprite):
             all_sprites.add(new_scratch)
             all_scratchs.add(new_scratch) 
 
-
+#-----------------------------------------------------------------------------------------------------------------------------------
 class Claw(pygame.sprite.Sprite):
     # Construtor da classe.
     def __init__(self,bottom, centerx):
@@ -165,7 +168,7 @@ class Claw(pygame.sprite.Sprite):
             self.kill()
           
           
-        
+#----------------------------------------------------------------------------------------------------------------------------------        
         
 
 class Meteor(pygame.sprite.Sprite):
@@ -198,7 +201,7 @@ class Meteor(pygame.sprite.Sprite):
         self.rect[0] += self.speedx
         
             
-
+#--------------------------------------------------------------------------------------------------------------------------------------
 
 class Coin(pygame.sprite.Sprite):
     def __init__(self):
@@ -229,7 +232,7 @@ class Coin(pygame.sprite.Sprite):
             self.rect.y = self.rect.y = random.randint(10, 600)
             self.speedx = random.randint(-5, -3)
 
-
+#---------------------------------------------------------------------------------------------------------------------------------------
 
 class Predator(pygame.sprite.Sprite):
     def __init__(self):
@@ -259,7 +262,11 @@ class Predator(pygame.sprite.Sprite):
             self.rect.x = (WIDTH-coin_WIDTH)
             self.rect.y = random.randint(10, 600)
             self.speedx = random.randint(-5, -3)
-            
+
+
+#---------------------------------------------------------------------------------------------------------------------------------------
+
+#                                  definindo parametros e grupos que serão utilizados
 score = 0
 score_coin = 0
 score_kills = 0
@@ -297,6 +304,7 @@ added = True
 # ===== Loop principal =====
 while game:
     
+    # utilizando do loop para fazer com que toda vez que a barreira voltasse para o começo ela fosse diferente
     meteorite = meteor[0]
     in_meteor = meteor[1]
 
@@ -308,7 +316,8 @@ while game:
         all_meteors.add(meteor[1])
 
     fpdif = FPS + difficult
-  
+    
+    #================================== adiciona um novo predador após certo tempo ============================================
     
 
     if fpdif > 40 and added == True:
@@ -321,7 +330,7 @@ while game:
 
 
 
-
+#========================================= modifica a dificuldade/velocidade com o tempo =============================================
     
     #print(fpdif)
     clock.tick(fpdif)
@@ -335,7 +344,9 @@ while game:
 
     score = int(difficult) + score_coin + score_kills
 
-    # ----- Trata eventos
+
+
+    # ================================================= Trata eventos ============================================================
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
@@ -356,8 +367,8 @@ while game:
     all_sprites.update()
     all_meteors.update()
 
-
-
+    #====================================== Colisão da função de ataque e adiciona pontos =======================================================
+    
     hits_pred = pygame.sprite.groupcollide(all_predators, all_scratchs, True, False, pygame.sprite.collide_mask)
     for predator in hits_pred: # As chaves são os elementos do primeiro grupo (meteoros) que colidiram com alguma bala
                 # O meteoro e destruido e precisa ser recriado
@@ -373,7 +384,7 @@ while game:
                 # Ganhou pontos!
         score_kills += 50
 
-    
+    #================================================ define as colisões letais =====================================================
     
     hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
@@ -381,7 +392,9 @@ while game:
     hits = pygame.sprite.spritecollide(player,all_predators,True, pygame.sprite.collide_mask)
     if len(hits) > 0:
         game = False
-    
+
+#============================================ define as colisãoes com as moedas que dão pontos =========================================
+
     colect_coin = pygame.sprite.spritecollide(player,all_coins,True, pygame.sprite.collide_mask)
 
     for coin in colect_coin:
@@ -389,7 +402,7 @@ while game:
         c = Coin()
         all_coins.add(c)
         all_sprites.add(c)
-        #Coin.self.rect.x =  (WIDTH-50)
+        
 
 
     if len(hits) > 0:
