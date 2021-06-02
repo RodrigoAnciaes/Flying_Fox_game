@@ -19,8 +19,11 @@ METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+
 pygame.mixer.music.load('Folder_de_Testes/assets/sounds/otaldosom.mp3')
 pygame.mixer.music.set_volume(10000000.0)
+pygame.mixer.music.play(loops=-1)
+
 
 score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
 
@@ -308,7 +311,7 @@ predator = Predator()
 all_predators.add(predator)
 all_sprites.add(predator)
 added = True
-pygame.mixer.music.play(loops=-1)
+
 # ===== Loop principal =====
 while game:
     
