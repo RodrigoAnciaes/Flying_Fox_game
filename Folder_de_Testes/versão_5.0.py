@@ -19,8 +19,8 @@ METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-pygame.mixer.music.load('Folder_de_Testes/assets/sounds/otaldosom2.ogg')
-pygame.mixer.music.set_volume(10000.0)
+pygame.mixer.music.load('Folder_de_Testes/assets/sounds/otaldosom.mp3')
+pygame.mixer.music.set_volume(10000000.0)
 
 score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
 
@@ -74,6 +74,8 @@ class Fox(pygame.sprite.Sprite):
         self.last_shot = pygame.time.get_ticks()
         self.shoot_ticks = 500
 
+        self.ultimopulo = 500
+
 
     def update(self):
         
@@ -119,9 +121,14 @@ class Fox(pygame.sprite.Sprite):
             
 
     def pulo(self):
+        now = pygame.time.get_ticks()
+        elapsed_ticks = now - self.ultimopulo
+        if elapsed_ticks > 100:
 
-        self.speedy = -16 + self.speed_modifier
-        self.fly_sound.play()
+            self.speedy = -16 + self.speed_modifier
+            self.fly_sound.play()
+            self.ultimopulo = now
+        
 
     def Scratch(self):
         # Verifica se pode atirar
