@@ -18,7 +18,8 @@ METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
 background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-
+pygame.mixer.music.load('assets/sounds/otaldosom2.ogg')
+pygame.mixer.music.set_volume(1.0)
 
 score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
 
