@@ -56,7 +56,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.count_fox = count_fox 
         self.image = Fox1
-        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/voo_zuado.wav') #descobri que arquivos de sound efects tem que ser .wav
+        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT - 100
@@ -68,6 +68,7 @@ class Fox(pygame.sprite.Sprite):
 
         self.last_shot = pygame.time.get_ticks()
         self.shoot_ticks = 500
+      
 
         
 
