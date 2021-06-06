@@ -17,15 +17,15 @@ count_fox = 0
 METEOR_WIDTH = 100
 METEOR_HEIGHT = random.randint(300, 450)
 font = pygame.font.SysFont(None, 48)
-background = pygame.image.load('Folder_de_Testes/assets/img/snow_day.jpeg').convert()
+background = pygame.image.load('Flying_Fox_Game/assets/img/snow_day.jpeg').convert()
 background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-coin_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/super-mario-coin-sound.mp3')
-pygame.mixer.music.load('Folder_de_Testes/assets/sounds/otaldosom.mp3')
+coin_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/super-mario-coin-sound.mp3')
+pygame.mixer.music.load('Flying_Fox_Game/assets/sounds/otaldosom.mp3')
 pygame.mixer.music.set_volume(10000000.0)
 pygame.mixer.music.play(loops=-1)
 
 
-score_font = pygame.font.Font('Folder_de_Testes/assets/img/PressStart2P.ttf', 28)
+score_font = pygame.font.Font('Flying_Fox_Game/assets/img/PressStart2P.ttf', 28)
 
 #----------------------------------------------------------------------------------------------------------------------------
 def randon_sizes_for_walls(xpos):
@@ -51,20 +51,20 @@ class Fox(pygame.sprite.Sprite):
         Fox_WIDTH = 170
         Fox_HEIGHT = 100
         self.gravity = 1
-        Fox1 = pygame.image.load('Folder_de_Testes/assets/img/raposa 1.png').convert_alpha()
+        Fox1 = pygame.image.load('Flying_Fox_Game/assets/img/raposa 1.png').convert_alpha()
         Fox1 = pygame.transform.scale(Fox1, (Fox_WIDTH, Fox_HEIGHT))
-        Fox2 = pygame.image.load('Folder_de_Testes/assets/img/raposa2.png').convert_alpha()
+        Fox2 = pygame.image.load('Flying_Fox_Game/assets/img/raposa2.png').convert_alpha()
         Fox2 = pygame.transform.scale(Fox2, (Fox_WIDTH, Fox_HEIGHT))
-        Fox3 = pygame.image.load('Folder_de_Testes/assets/img/raposa 3.png').convert_alpha()
+        Fox3 = pygame.image.load('Flying_Fox_Game/assets/img/raposa 3.png').convert_alpha()
         Fox3 = pygame.transform.scale(Fox3, (Fox_WIDTH, Fox_HEIGHT))
-        self.flying_one = pygame.image.load('Folder_de_Testes/assets/img/raposa_voando.png').convert_alpha()
+        self.flying_one = pygame.image.load('Flying_Fox_Game/assets/img/raposa_voando.png').convert_alpha()
         self.flying_one = pygame.transform.scale(self.flying_one, (Fox_WIDTH, Fox_HEIGHT + 50))
 
         self.images = [Fox1,Fox2,Fox3]
 
         self.count_fox = count_fox 
         self.image = Fox1
-        self.fly_sound =  pygame.mixer.Sound('Folder_de_Testes/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
+        self.fly_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT
@@ -156,7 +156,7 @@ class Claw(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         claw_WIDTH = 150
         claw_HEIGHT = 200
-        self.image = pygame.image.load('Folder_de_Testes/assets/img/scratch.png').convert_alpha()
+        self.image = pygame.image.load('Flying_Fox_Game/assets/img/scratch.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (claw_WIDTH, claw_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
@@ -191,7 +191,7 @@ class Meteor(pygame.sprite.Sprite):
         wall_WIDTH = 80
         self.posx = posx
         self.posy = posy
-        self.image = pygame.image.load('Folder_de_Testes/assets/img/Tronco1.png').convert_alpha()
+        self.image = pygame.image.load('Flying_Fox_Game/assets/img/Tronco1.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (wall_WIDTH, wall_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect[0] = posx
@@ -220,7 +220,7 @@ class Coin(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         coin_HEIGHT = 50
         coin_WIDTH = 50
-        self.image = pygame.image.load('Folder_de_Testes/assets/img/coin.png').convert_alpha()
+        self.image = pygame.image.load('Flying_Fox_Game/assets/img/coin.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (coin_WIDTH, coin_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
@@ -251,7 +251,7 @@ class Predator(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         coin_HEIGHT = 50
         coin_WIDTH = 50
-        self.image = pygame.image.load('Folder_de_Testes/assets/img/piranha.png').convert_alpha()
+        self.image = pygame.image.load('Flying_Fox_Game/assets/img/piranha.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (coin_WIDTH, coin_HEIGHT))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
