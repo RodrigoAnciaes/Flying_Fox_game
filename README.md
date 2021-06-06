@@ -30,11 +30,11 @@
 
 - Falando em pontos, você pode ganahar pontos de diversas maneiras:
 
-- Sobrevivendo por um periodo de tempo, a pontuação pr tempo fica mais rápida assim como os troncos, piranhas e moedas conforme o tempo passa
+- Sobrevivendo por um periodo de tempo, a pontuação pr tempo fica mais rápida assim como os troncos, piranhas e moedas conforme o tempo passa.
 
-- Coletando moedas
+- Coletando moedas.
 
-- Matando as piranhas antes que elas acertem você
+- Matando as piranhas antes que elas acertem você.
 
 # No fim de tudo:
 
