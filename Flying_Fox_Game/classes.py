@@ -4,7 +4,8 @@ import random
 WIDTH = 880
 HEIGHT = 660
 
-
+pygame.init()
+pygame.mixer.init()
 
 def randon_sizes_for_walls(xpos):
     protection = 100
@@ -20,7 +21,7 @@ def randon_sizes_for_walls(xpos):
 # ----- Inicia estruturas de dados
 # Definindo os novos tipos
 class Fox(pygame.sprite.Sprite):
-
+    
     def __init__(self):
         
         pygame.sprite.Sprite.__init__(self)
