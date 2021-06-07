@@ -1,5 +1,6 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
+from Flying_Fox_Game.config import QUIT
 import pygame
 import random
 
