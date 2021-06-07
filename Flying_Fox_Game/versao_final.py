@@ -4,7 +4,7 @@
 # ----- Importa e inicia pacotes
 import pygame
 import random
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, DONE
 from first_screen import init_screen
 #from instructions_screen import instruc_screen
 from game_screen import gaming_screen
