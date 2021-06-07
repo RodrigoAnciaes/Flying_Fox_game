@@ -140,7 +140,10 @@ def gaming_screen(window):
                 if event.key == pygame.K_SPACE:
                     Fox.pulo(player)
                 if event.key == pygame.K_0:
-                    player.Scratch()
+                    scratch = player.Scratch()
+                    all_sprites.add(scratch)
+                    all_scratchs.add(scratch) 
+                    
 
 
         # ----- Atualiza estado do jogo
