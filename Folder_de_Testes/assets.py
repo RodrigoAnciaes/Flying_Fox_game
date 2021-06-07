@@ -1,3 +1,7 @@
+
+########o codigo abaixo é o do handout,,,, esta apenas para nos basearmos##########
+
+
 import pygame
 import os
 from config import METEOR_WIDTH, METEOR_HEIGHT, SHIP_WIDTH, SHIP_HEIGHT, IMG_DIR, SND_DIR, FNT_DIR
