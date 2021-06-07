@@ -1,3 +1,5 @@
+
+# Importa e define oque for nescessário para o código
 import pygame
 import random
 WIDTH = 880
