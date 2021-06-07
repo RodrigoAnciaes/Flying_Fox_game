@@ -33,7 +33,7 @@ def ending_screen(screen):
                     running = False
 
         # A cada loop, redesenha o fundo e os sprites
-        screen.fill(BLACK)
+        #screen.fill(BLACK)
         screen.blit(background, background_rect)
 
         # Depois de desenhar tudo, inverte o display.
