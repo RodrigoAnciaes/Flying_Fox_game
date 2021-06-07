@@ -1,10 +1,11 @@
 
-
+WIDTH = 880
+HEIGHT = 660
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
 import random
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT, DONE
+from config import * 
 from first_screen import init_screen
 #from instructions_screen import instruc_screen
 from game_screen import gaming_screen
