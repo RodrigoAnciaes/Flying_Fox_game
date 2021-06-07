@@ -1,3 +1,6 @@
+from Flying_Fox_Game.config import QUIT
+
+
 def game_screen(window):
         # ===== Inicialização =====
     # ----- Importa e inicia pacotes
@@ -122,7 +125,7 @@ def game_screen(window):
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
-                game = False
+                state = QUIT
             # Verifica se apertou alguma tecla.
 
             # Verifica se soltou alguma tecla.
@@ -160,10 +163,10 @@ def game_screen(window):
 
         hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
         if len(hits) > 0:
-            game = False
+            state = DONE
         hits = pygame.sprite.spritecollide(player,all_predators,True, pygame.sprite.collide_mask)
         if len(hits) > 0:
-            game = False
+            state = DONE
 
     #============================================ define as colisãoes com as moedas que dão pontos =========================================
 
@@ -179,7 +182,7 @@ def game_screen(window):
 
 
         if len(hits) > 0:
-            game = False
+            state = DONE
         # ----- Gera saídas
         window.fill((0, 0, 0))  # Preenche com a cor branca
         window.blit(background, (0, 0))
