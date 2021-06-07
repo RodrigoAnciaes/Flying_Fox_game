@@ -18,6 +18,7 @@ pygame.mixer.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Flying Fox')
 
+#===================== Começa o a transitar pelas telas do jogo, quando elas forem chamadas ============================================
 state = INIT
 while state != QUIT:
     if state == INIT:
