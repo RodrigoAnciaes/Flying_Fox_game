@@ -39,3 +39,8 @@
 # No fim de tudo:
 
 - não fique triste se você for atingido na cabeça por um troco ou comido por uma piranha, apenas recomece o jogo e tente alcançar a maior pontuação possível novamente!
+
+# Referencias:
+
+- Agradeço ao canal do Youtube: Programador Sagaz, por nos explicar e mostrar em seu vídeo partes nescessárias para o funcionamento do código de geração de troncos/ barreiras aleátórias, que está incluso na classe Meteor e na finção get_randon_sizes_for_walls que construimos no código.
+- segue o link para o vpideo onde a função foi apresentada: https://www.youtube.com/watch?v=WbmHcbcSwnA&list=WL&index=139
