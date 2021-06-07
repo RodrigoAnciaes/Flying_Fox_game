@@ -22,7 +22,7 @@ def end_screen(screen):
     pygame.mixer.music.play(loops=-1)
     running = True
     with open('score.txt', 'r') as arquivo:
-        score = arquivo.read()
+        score = arquivo.read() # Obtem a pontuação que o jogo obteve, está que ficou salva no arquivo indicado
         score = int(score)
     while running:
         # Ajusta a velocidade do jogo.
@@ -36,12 +36,12 @@ def end_screen(screen):
                 running = False
 
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_b:
+                if event.key == pygame.K_b:  #Verifica se o jogador decidio jogar novamente
                     state = INIT
                     running = False
 
-        # A cada loop, redesenha o fundo e os sprites
-        #screen.fill(BLACK)
+        
+        #=================== desenha a pontuação que o jogador obteve e o resto da tela =========================
         text_surface = score_font.render("Your score:{:08d}".format(score), True, (50, 100, 50))
         text_rect = text_surface.get_rect()
         text_rect.midtop = (WIDTH / 2,  (HEIGHT/2) - 10)
