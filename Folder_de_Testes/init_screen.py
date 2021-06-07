@@ -1,3 +1,6 @@
+
+########o codigo abaixo é o do handout,,,, esta apenas para nos basearmos##########
+
 import pygame
 import random
 from os import path
