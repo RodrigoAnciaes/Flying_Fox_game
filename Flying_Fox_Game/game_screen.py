@@ -99,7 +99,7 @@ def gaming_screen(window):
 
         fpdif = FPS + difficult
 
-        #================================== adiciona um novo predador após certo tempo ============================================
+        #================================== adiciona um novo predador após certo tempo, até dois com o passar do tempo ============================================
 
 
         if fpdif > added:
