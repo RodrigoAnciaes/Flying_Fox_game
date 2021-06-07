@@ -7,6 +7,7 @@ HEIGHT = 660
 pygame.init()
 pygame.mixer.init()
 
+# Função para gerar os tamanhos e depois posicionamentos aleátorios dos troncos/barreiras
 def randon_sizes_for_walls(xpos):
     protection = 100
     #print(xpos)
@@ -19,11 +20,12 @@ def randon_sizes_for_walls(xpos):
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # ----- Inicia estruturas de dados
-# Definindo os novos tipos
+# Definindo os novos tipos de classes que existirão
 class Fox(pygame.sprite.Sprite):
     
     def __init__(self):
         
+        #================== define os parametros base ==============================
         pygame.sprite.Sprite.__init__(self)
         count_fox = 0
         Fox_WIDTH = 170
@@ -38,18 +40,20 @@ class Fox(pygame.sprite.Sprite):
         self.flying_one = pygame.image.load('Flying_Fox_Game/assets/img/raposa_voando.png').convert_alpha()
         self.flying_one = pygame.transform.scale(self.flying_one, (Fox_WIDTH, Fox_HEIGHT + 50))
 
-        self.images = [Fox1,Fox2,Fox3]
+        self.images = [Fox1,Fox2,Fox3] # coloca as imagens dentro de uma lista para serem utilizadas na animação
 
-        self.count_fox = count_fox 
+        self.count_fox = count_fox  # Parametro da animação
         self.image = Fox1
-        self.fly_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
-        self.cut_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/cut.mp3')
+        self.fly_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/Efeito sonoro pulo do Mário.mp3') # define o som do pulo
+        self.cut_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/cut.mp3') # define o som do ataque
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 4
+        self.rect.centerx = WIDTH / 4 # posicionam a imagem e definem a velocidade de quda inicial
         self.rect.bottom = HEIGHT
         self.speedy = 1
         
-        self.now_on_windon = 0
+
+        # Define parâmetros de calibragem essencias para a animação, pulo, velocidade
+        self.now_on_windon = 0 
 
         self.speed_modifier = 0.0
 
@@ -63,27 +67,27 @@ class Fox(pygame.sprite.Sprite):
         
         self.rect.y += self.speedy 
 
-        self.speedy += self.gravity + 0.1 * (-self.speedy)
+        self.speedy += self.gravity + 0.1 * (-self.speedy) #aumenta a velocidade conforme a gravidade
 
         
-        self.mask = pygame.mask.from_surface(self.image)
+        self.mask = pygame.mask.from_surface(self.image) #forma a máscara da imagem
 
         self.count_fox += 1
 
         #print(self.speed_modifier)
 
-        if self.speed_modifier > -12:
+        if self.speed_modifier > -12:      # Esses parametros foram criados para regular o aumento excessivo da velocidade de queda conformde o aumento da velocidade
             self.speed_modifier -= 0.0024
 
 
 
-        
+        #==================Executa a animação do andar da raposa
         if self.count_fox >= 10 and  self.rect.bottom > HEIGHT:
 
             self.now_on_windon = (self.now_on_windon + 1) % 3
             self.image = self.images[self.now_on_windon]
             self.count_fox = 0
-
+        # Animação do pulo
         elif self.speedy <0 :
             self.image = self.flying_one
             #print(self.speedy)
@@ -102,7 +106,7 @@ class Fox(pygame.sprite.Sprite):
            self.rect.top = 0
             
 
-    def pulo(self):
+    def pulo(self):  # Faz a raposa pular se dentro de certo periodo de 'recarga'
         now = pygame.time.get_ticks()
         elapsed_ticks = now - self.ultimopulo
         if elapsed_ticks > 100:
@@ -112,17 +116,17 @@ class Fox(pygame.sprite.Sprite):
             self.ultimopulo = now
         
 
-    def Scratch(self):
-        # Verifica se pode atirar
+    def Scratch(self): # Define o ataque da raposa
+        # Verifica se pode atacar
         now = pygame.time.get_ticks()
-        # Verifica quantos ticks se passaram desde o último tiro.
+        # Verifica quantos ticks se passaram desde o último ataque.
         elapsed_ticks = now - self.last_shot
 
-        # Se já pode atirar novamente...
+        # Se já pode atacar novamente...
         if elapsed_ticks > self.shoot_ticks:
             # Marca o tick da nova imagem.
             self.last_shot = now
-            # A nova bala vai ser criada logo acima e no centro horizontal da nave
+            # A novo arranhão vai ser criado logo acima e no centro horizontal e um pouco a direita da raposa
             new_scratch = Claw(self.rect.top + 130, self.rect.centerx + 60)
 
             self.cut_sound.play()
@@ -166,7 +170,7 @@ class Claw(pygame.sprite.Sprite):
 #----------------------------------------------------------------------------------------------------------------------------------        
         
 
-class Meteor(pygame.sprite.Sprite):
+class Meteor(pygame.sprite.Sprite): #Classe responsável pelas barreiras/tronco
     def __init__(self, inversal,posx, posy):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -180,25 +184,25 @@ class Meteor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect[0] = posx
 
-        if inversal:
+        if inversal: # Verica se a barreira/tronco será ou não ivertida
 
             self.image = pygame.transform.flip(self.image,False, True)
             self.rect[1] = (self.rect[3] - posy)
         else:
             self.rect[1] = HEIGHT - posy
 
-        self.mask = pygame.mask.from_surface(self.image)
+        self.mask = pygame.mask.from_surface(self.image) # Define a marcara da barreira/tronco
 
-        self.speedx = -10
+        self.speedx = -10 # Velocidade de movimento horizontal da barreira/tronco
 
     def update(self):
         
-        self.rect[0] += self.speedx
+        self.rect[0] += self.speedx # Atualiza a posição da barreira/tronco
         
             
 #--------------------------------------------------------------------------------------------------------------------------------------
 
-class Coin(pygame.sprite.Sprite):
+class Coin(pygame.sprite.Sprite): #Classe das moedas de pontuação
     def __init__(self):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -229,7 +233,7 @@ class Coin(pygame.sprite.Sprite):
 
 #---------------------------------------------------------------------------------------------------------------------------------------
 
-class Predator(pygame.sprite.Sprite):
+class Predator(pygame.sprite.Sprite): #Constroi a piranha, o terrivel predador da raposa voadora
     def __init__(self):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -239,7 +243,7 @@ class Predator(pygame.sprite.Sprite):
         Piranha = pygame.transform.scale(Piranha, (coin_WIDTH, coin_HEIGHT))
         Piranha2 = pygame.image.load('Flying_Fox_Game/assets/img/piranha3.png').convert_alpha()
         Piranha2 = pygame.transform.scale(Piranha2, (coin_WIDTH, coin_HEIGHT))
-        self.images = [Piranha, Piranha2]
+        self.images = [Piranha, Piranha2] # Coloca as imagens dentro de uma lista para serem utilizadas na animação
         self.image = Piranha
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
@@ -254,7 +258,7 @@ class Predator(pygame.sprite.Sprite):
 
     def update(self):
         # Atualizando a posição do meteoro
-        if self.counter == 10:
+        if self.counter == 10: #se dentro do certo periodo -> executa a animação de abrir e fechar a boca
             self.image = self.images[(self.count_anim % 2)]
             self.mask = pygame.mask.from_surface(self.image)
             self.count_anim += 1
@@ -272,7 +276,7 @@ class Predator(pygame.sprite.Sprite):
 
 
 
-# Criando um grupo de meteoros
+# Criando os grupo de sprites
 all_sprites = pygame.sprite.Group()
 all_meteors = pygame.sprite.Group()
 all_coins =   pygame.sprite.Group()
@@ -281,18 +285,18 @@ all_scratchs = pygame.sprite.Group()
 # Criando o jogador
 player = Fox()
 all_sprites.add(player)
-# Criando os meteoros
+# Criando as barreiras/troncos
 for i in range(1):
     meteor = randon_sizes_for_walls(WIDTH * i + 800)
     all_meteors.add(meteor[0])
     all_meteors.add(meteor[1])
 
-
+#Cria as moedas
 coin = Coin()
 all_coins.add(coin)
 all_sprites.add(coin)
 
-
+#Crias os predadores
 predator = Predator()
 all_predators.add(predator)
 all_sprites.add(predator)
