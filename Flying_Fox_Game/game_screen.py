@@ -1,14 +1,19 @@
-from Flying_Fox_Game.config import QUIT
 
 
-def game_screen(window):
+from config import QUIT, GAME, DONE, INIT
+
+
+
+def gaming_screen(window):
         # ===== Inicialização =====
     # ----- Importa e inicia pacotes
     import pygame
     import random
+    
 
     pygame.init()
     pygame.mixer.init()
+    from classes import Fox, Predator, Coin, Meteor, Claw, randon_sizes_for_walls
     assets = []
     # ----- Gera tela principal
     WIDTH = 880
@@ -75,9 +80,10 @@ def game_screen(window):
     all_predators.add(predator)
     all_sprites.add(predator)
     added = True
-
+    PLAYING = 4
+    state = PLAYING
     # ===== Loop principal =====
-    while game:
+    while state != DONE:
 
         # utilizando do loop para fazer com que toda vez que a barreira voltasse para o começo ela fosse diferente
         meteorite = meteor[0]
@@ -125,7 +131,7 @@ def game_screen(window):
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
-                state = QUIT
+                state = DONE
             # Verifica se apertou alguma tecla.
 
             # Verifica se soltou alguma tecla.
@@ -161,10 +167,10 @@ def game_screen(window):
 
         #================================================ define as colisões letais =====================================================
 
-        hits = pygame.sprite.spritecollide(player,all_meteors,True, pygame.sprite.collide_mask)
+        hits = pygame.sprite.spritecollide(player,all_meteors,False, pygame.sprite.collide_mask)
         if len(hits) > 0:
             state = DONE
-        hits = pygame.sprite.spritecollide(player,all_predators,True, pygame.sprite.collide_mask)
+        hits = pygame.sprite.spritecollide(player,all_predators,False, pygame.sprite.collide_mask)
         if len(hits) > 0:
             state = DONE
 
@@ -197,5 +203,3 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    # ===== Finalização =====
-    pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
