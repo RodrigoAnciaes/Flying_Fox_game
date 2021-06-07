@@ -109,6 +109,8 @@ def gaming_screen(window):
             all_sprites.add(predator)
             added = False
 
+        
+
 
 
     #========================================= modifica a dificuldade/velocidade com o tempo =============================================
