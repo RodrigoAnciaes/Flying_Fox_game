@@ -232,19 +232,30 @@ class Predator(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         coin_HEIGHT = 50
         coin_WIDTH = 50
-        self.image = pygame.image.load('Flying_Fox_Game/assets/img/piranha.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (coin_WIDTH, coin_HEIGHT))
+        Piranha = pygame.image.load('Flying_Fox_Game/assets/img/piranha.png').convert_alpha()
+        Piranha = pygame.transform.scale(Piranha, (coin_WIDTH, coin_HEIGHT))
+        Piranha2 = pygame.image.load('Flying_Fox_Game/assets/img/piranha2.png').convert_alpha()
+        Piranha2 = pygame.transform.scale(Piranha2, (coin_WIDTH + 50, coin_HEIGHT + 50))
+        self.images = [Piranha, Piranha2]
+        self.image = Piranha
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = (WIDTH-coin_WIDTH)
         self.rect.y = random.randint(10, 600)
         self.speedx = random.randint(-5, -3)
         METEOR_HEIGHT = random.randint(50, 250)
+        self.count_anim = 0
+        self.counter = 0
         
         
 
     def update(self):
         # Atualizando a posição do meteoro
+        if self.counter == 10:
+            self.image = self.images[(self.count_anim % 2)]
+            self.count_anim += 1
+            self.counter = 0
+        self.counter += 1
         METEOR_HEIGHT = random.randint(50, 250)
         self.rect.x += self.speedx
         coin_WIDTH = 50
