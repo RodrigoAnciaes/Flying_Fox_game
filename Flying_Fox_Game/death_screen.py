@@ -6,6 +6,7 @@ HEIGHT = 660
 from config import GAME, QUIT, INIT
 
 
+
 def end_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
@@ -14,8 +15,11 @@ def end_screen(screen):
     background = pygame.image.load('Flying_Fox_Game/assets/img/tela_terminox.jpg').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
-
+    score_font = pygame.font.Font('Flying_Fox_Game/assets/img/PressStart2P.ttf', 28)
     running = True
+    with open('score.txt', 'r') as arquivo:
+        score = arquivo.read()
+        score = int(score)
     while running:
 
         # Ajusta a velocidade do jogo.
@@ -35,7 +39,12 @@ def end_screen(screen):
 
         # A cada loop, redesenha o fundo e os sprites
         #screen.fill(BLACK)
+        text_surface = score_font.render("Your score:{:08d}".format(score), True, (50, 100, 50))
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  (HEIGHT/2) - 10)
         screen.blit(background, background_rect)
+        screen.blit(text_surface, text_rect)
+        
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
