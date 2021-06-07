@@ -1,7 +1,7 @@
 import pygame
 import random
-from os import path
-
+WIDTH = 880
+HEIGHT = 660
 from config import GAME, QUIT
 
 
@@ -11,6 +11,7 @@ def init_screen(screen):
 
     # Carrega o fundo da tela inicial
     background = pygame.image.load('Flying_Fox_Game/assets/img/tela de inicio final.png').convert()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
     running = True
