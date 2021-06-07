@@ -10,18 +10,21 @@ from config import GAME, QUIT, INIT
 def end_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
+    pygame.mixer.init()
 
     # Carrega o fundo da tela inicial
     background = pygame.image.load('Flying_Fox_Game/assets/img/tela_terminox.jpg').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
     score_font = pygame.font.Font('Flying_Fox_Game/assets/img/PressStart2P.ttf', 28)
+    pygame.mixer.music.load('Flying_Fox_Game/assets/sounds/txururu.mp3')
+    pygame.mixer.music.set_volume(700)
+    pygame.mixer.music.play(loops=-1)
     running = True
     with open('score.txt', 'r') as arquivo:
         score = arquivo.read()
         score = int(score)
     while running:
-
         # Ajusta a velocidade do jogo.
         clock.tick(60)
 
@@ -48,5 +51,5 @@ def end_screen(screen):
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
-
+    
     return state
