@@ -22,8 +22,7 @@ state = INIT
 while state != QUIT:
     if state == INIT:
         state = init_screen(window)
-    #elif state == TUTO:
-        #state = instruc_screen(window)
+
     elif state == GAME:
         state = gaming_screen(window)
     else:
