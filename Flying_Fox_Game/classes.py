@@ -123,8 +123,11 @@ class Fox(pygame.sprite.Sprite):
             self.last_shot = now
             # A nova bala vai ser criada logo acima e no centro horizontal da nave
             new_scratch = Claw(self.rect.top + 130, self.rect.centerx + 60)
-            all_sprites.add(new_scratch)
-            all_scratchs.add(new_scratch) 
+            
+            return new_scratch
+            #all_sprites.add(new_scratch)
+            #all_scratchs.add(new_scratch) 
+            
 
 #-----------------------------------------------------------------------------------------------------------------------------------
 class Claw(pygame.sprite.Sprite):
