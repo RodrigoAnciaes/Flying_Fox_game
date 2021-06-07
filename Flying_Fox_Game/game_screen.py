@@ -13,7 +13,7 @@ def gaming_screen(window):
 
     pygame.init()
     pygame.mixer.init()
-    from classes import Fox, Predator, Coin, Meteor, Claw, randon_sizes_for_walls
+    from classes import Fox, Predator, Coin, Meteor, Claw, randon_sizes_for_walls # Importa as classes de sprites existentes 
     assets = []
     # ----- Gera tela principal
     WIDTH = 880
@@ -28,6 +28,7 @@ def gaming_screen(window):
     font = pygame.font.SysFont(None, 48)
     background = pygame.image.load('Flying_Fox_Game/assets/img/snow_day.jpeg').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    #-------------------- Estabelece os efeitos sonoros -------------------------------
     coin_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/super-mario-coin-sound.mp3')
     pygame.mixer.music.load('Flying_Fox_Game/assets/sounds/otaldosom.mp3')
     pygame.mixer.music.set_volume(10000000.0)
@@ -79,7 +80,7 @@ def gaming_screen(window):
     predator = Predator()
     all_predators.add(predator)
     all_sprites.add(predator)
-    added = True
+    added = 40
     PLAYING = 4
     state = PLAYING
     # ===== Loop principal =====
@@ -101,17 +102,16 @@ def gaming_screen(window):
         #================================== adiciona um novo predador após certo tempo ============================================
 
 
-        if fpdif > 40 and added == True:
+        if fpdif > added:
             #print(added)
 
             predator = Predator()
             all_predators.add(predator)
             all_sprites.add(predator)
-            added = False
+            added = 65
+            
 
         
-
-
 
     #========================================= modifica a dificuldade/velocidade com o tempo =============================================
 
@@ -197,14 +197,20 @@ def gaming_screen(window):
         # ----- Gera saídas
         window.fill((0, 0, 0))  # Preenche com a cor branca
         window.blit(background, (0, 0))
-        # Desenhando meteoros
+        # Desenhando troncos e as outras sprites
         all_sprites.draw(window)
         all_meteors.draw(window)
-
+        # Escrevendo o placar
         text_surface = score_font.render("{:08d}".format(score), True, (255, 255, 0))
         text_rect = text_surface.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
+        score_for_save = str(score)
         window.blit(text_surface, text_rect)
+        with open('score.txt', 'w') as salv:
+            salv.write(score_for_save)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
+
+
+    
 
