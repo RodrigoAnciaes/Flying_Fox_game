@@ -43,6 +43,7 @@ class Fox(pygame.sprite.Sprite):
         self.count_fox = count_fox 
         self.image = Fox1
         self.fly_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/Efeito sonoro pulo do Mário.mp3') #descobri que arquivos de sound efects tem que ser .wav
+        self.cut_sound =  pygame.mixer.Sound('Flying_Fox_Game/assets/sounds/cut.mp3')
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 4
         self.rect.bottom = HEIGHT
@@ -123,6 +124,8 @@ class Fox(pygame.sprite.Sprite):
             self.last_shot = now
             # A nova bala vai ser criada logo acima e no centro horizontal da nave
             new_scratch = Claw(self.rect.top + 130, self.rect.centerx + 60)
+
+            self.cut_sound.play()
             
             return new_scratch
             #all_sprites.add(new_scratch)
@@ -234,8 +237,8 @@ class Predator(pygame.sprite.Sprite):
         coin_WIDTH = 50
         Piranha = pygame.image.load('Flying_Fox_Game/assets/img/piranha.png').convert_alpha()
         Piranha = pygame.transform.scale(Piranha, (coin_WIDTH, coin_HEIGHT))
-        Piranha2 = pygame.image.load('Flying_Fox_Game/assets/img/piranha2.png').convert_alpha()
-        Piranha2 = pygame.transform.scale(Piranha2, (coin_WIDTH + 50, coin_HEIGHT + 50))
+        Piranha2 = pygame.image.load('Flying_Fox_Game/assets/img/piranha3.png').convert_alpha()
+        Piranha2 = pygame.transform.scale(Piranha2, (coin_WIDTH, coin_HEIGHT))
         self.images = [Piranha, Piranha2]
         self.image = Piranha
         self.mask = pygame.mask.from_surface(self.image)
@@ -253,6 +256,7 @@ class Predator(pygame.sprite.Sprite):
         # Atualizando a posição do meteoro
         if self.counter == 10:
             self.image = self.images[(self.count_anim % 2)]
+            self.mask = pygame.mask.from_surface(self.image)
             self.count_anim += 1
             self.counter = 0
         self.counter += 1
