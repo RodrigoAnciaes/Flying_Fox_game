@@ -3,6 +3,17 @@
 
 -Vale ressaltar que as imagens utilizadas foram criadas ou ediatadas pelo programa "paint", sendo todas modificações e criações autênticas de nosso trabalho.
 
+# Video Explicativo:
+- Foram feitos dois vídeos gravados de maneiras diferentes, devido a dificuldade de gravar o jogo com o tamaho de janela natural dele:
+
+primeiro:
+
+- https://youtu.be/4qnfAZdSCjw 
+
+- Caso o primeiro não esteja com a resolução boa, segue o segundo vídeo que esá com melhor resolução, porém teve que ser gravado de uma maneira não muito boa:
+
+- https://youtu.be/v1qw41vF5mM
+
 # Desenvolvido em conjunto por:
 - Rodrigo Anciães Patelli
 - Guido Rosa
