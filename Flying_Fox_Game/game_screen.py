@@ -98,6 +98,7 @@ def gaming_screen(window):
             all_meteors.add(meteor[1])
 
         fpdif = FPS + difficult
+        print(fpdif)
 
         #================================== adiciona um novo predador após certo tempo, até dois com o passar do tempo ============================================
 
@@ -108,9 +109,9 @@ def gaming_screen(window):
             predator = Predator()
             all_predators.add(predator)
             all_sprites.add(predator)
-            added = 65
+            added += 10
             
-
+    
         
 
     #========================================= modifica a dificuldade/velocidade com o tempo =============================================
