@@ -1,3 +1,7 @@
+
+# Esse código é de outra pessoa e não foi utilizado, ele estava aqui só para nos basermos mas acaou que era muito complexo pro momento
+
+
 def scoreboard(score, name):
     assets = load_assets()
 
