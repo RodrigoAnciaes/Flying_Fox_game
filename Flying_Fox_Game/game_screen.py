@@ -98,7 +98,7 @@ def gaming_screen(window):
             all_meteors.add(meteor[1])
 
         fpdif = FPS + difficult
-        print(fpdif)
+        #print(fpdif)
 
         #================================== adiciona um novo predador após certo tempo, até dois com o passar do tempo ============================================
 
